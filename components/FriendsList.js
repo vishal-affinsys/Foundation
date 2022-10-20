@@ -18,9 +18,9 @@ function FriendsList({ UserFriendList }) {
                   uri: item.picture,
                 }}
                 alt="friends-header"
-                height="100"
+                height="70"
                 rounded="full"
-                width="100"
+                width="70"
               />
               <Text
                 marginTop={'2'}

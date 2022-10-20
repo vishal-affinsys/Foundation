@@ -1,6 +1,6 @@
-import { Box, Text, VStack, HStack, Image, FlatList } from 'native-base';
+import { Box, VStack, FlatList } from 'native-base';
 import React from 'react';
-import { Link } from 'react-router-native';
+import ChatListItem from './ChatListItem';
 
 function ChatList({ UserChatList }) {
   return (
@@ -13,43 +13,9 @@ function ChatList({ UserChatList }) {
         <FlatList
           showsVerticalScrollIndicator={false}
           data={UserChatList}
+          keyExtractor={(item) => item.id}
           renderItem={({ item }) => {
-            return (
-              <Link to="ChatScreen">
-                <Box marginTop={'4'} marginLeft={'4'}>
-                  <HStack width={'100%'}>
-                    <Image
-                      source={{ uri: item.picture }}
-                      alt="chat-list"
-                      height="50"
-                      rounded="full"
-                      width="50"
-                    />
-                    <HStack flex={'1'} justifyContent={'space-evenly'}>
-                      <Box marginLeft={'3'} width={'4/5'}>
-                        <Text
-                          color={'white'}
-                          fontWeight={'bold'}
-                          fontSize={'16'}
-                        >
-                          {item.name}
-                        </Text>
-                        <Text color={'#B3B9C9'} fontSize={'12'}>
-                          {item.lastChat}
-                        </Text>
-                      </Box>
-                      <Text
-                        marginRight={'4'}
-                        color={'#B3B9C979'}
-                        fontSize={'12'}
-                      >
-                        {item.latest_timestamp}
-                      </Text>
-                    </HStack>
-                  </HStack>
-                </Box>
-              </Link>
-            );
+            return <ChatListItem item={item} />;
           }}
         />
       </Box>

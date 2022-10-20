@@ -5,22 +5,26 @@ import ChatList from '../components/ChatList';
 import React, { useState } from 'react';
 
 import NAMES from '../chatData.json';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { StatusBar } from 'expo-status-bar';
 
 export default function MainScreen() {
   const [filteredList, setChatList] = useState(NAMES.profile.friends);
 
   return (
     <NativeBaseProvider>
-      <SafeAreaView backgroundColor={'#292F3F90'}>
-        <VStack display={'flex'} height={'100%'} backgroundColor={'#292F3F'}>
-          <CustomHeader searchFunction={setChatList} />
-          <FriendsList UserFriendList={filteredList} />
-          <Box flex={'1'}>
-            <ChatList UserChatList={filteredList} />
-          </Box>
-        </VStack>
-      </SafeAreaView>
+      <StatusBar style="light" />
+      <VStack
+        paddingTop={'8'}
+        display={'flex'}
+        height={'100%'}
+        backgroundColor={'#292F3F'}
+      >
+        <CustomHeader searchFunction={setChatList} />
+        <FriendsList UserFriendList={filteredList} />
+        <Box flex={'1'}>
+          <ChatList UserChatList={filteredList} />
+        </Box>
+      </VStack>
     </NativeBaseProvider>
   );
 }
