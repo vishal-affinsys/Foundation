@@ -1,0 +1,44 @@
+.main-header-left {
+  margin-top: 0px;
+  padding: 12px;
+  background-color: white;
+  width: 40%;
+  display: inline-block;
+}
+
+.main-header-right {
+  display: inline-block;
+  align-content: right;
+  width: 50%;
+}
+
+.chatBot-text {
+  background-color: white;
+  font-size: 25px;
+  margin-left: 10px;
+}
+
+.main-header {
+  display: inline;
+  width: 100%;
+}
+
+.logo-chatbot {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+}
+
+.tablinks {
+  margin-right: 20px;
+  background: none;
+  font-size: 16px;
+  background-color: transparent;
+  enable-background: accumulate;
+  border-radius: 12px;
+  padding: 12px;
+  cursor: pointer;
+  float: right;
+  overflow: hidden;
+  border: none;
+}

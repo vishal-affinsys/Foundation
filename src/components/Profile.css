@@ -1,0 +1,25 @@
+.user-profile-picture{
+    margin-top: 10px;
+    margin-bottom: 5px;
+    /* background-color: aqua; */
+    padding-left: 12px;
+}
+
+.profile-image{
+    height: 70px;
+    border-radius: 100px;
+}
+
+.profile-name{
+    font-size: 28px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-left: 12px;
+}
+
+.profile-status{
+    margin-left: 12px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: rgba(0, 0, 0, 0.507);
+    font-weight: 400;
+}
