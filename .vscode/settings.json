@@ -1,0 +1,7 @@
+{
+  "typescript.tsserver.watchOptions": {},
+  "editor.formatOnSave": true,
+  "gitlens.currentLine.dateFormat": "",
+  "javascript.format.insertSpaceAfterOpeningAndBeforeClosingJsxExpressionBraces": true,
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+}
