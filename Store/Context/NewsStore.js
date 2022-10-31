@@ -1,6 +1,7 @@
 import React from 'react';
 import {useState} from 'react';
 import axios from 'react-native-axios';
+import Url from '../../Utils/urls';
 
 export const NewsProvider = React.createContext({
   newsArray: {
@@ -13,6 +14,7 @@ export const NewsProvider = React.createContext({
     science: [],
     technology: [],
   },
+  isListLoading: null,
   isLoading: null,
   fetchListOfCategories: category => {},
   fetchTrendingPost: () => {},
@@ -31,16 +33,15 @@ const NewsContextProvider = ({children}) => {
     technology: [],
   });
   const [isLoading, setIsLoading] = useState(false);
-
-  // const apiKey1 = '2977e6b09826487ba912c11ee68503de';
-
-  const apiKey2 = '3609c0ae002848bd830f34ec06ff3e4d';
+  const [isListLoading, setIsListLoading] = useState(false);
 
   async function fetchTrendingPost() {
     setIsLoading(true);
-    const data = await axios.get(
-      'https://newsapi.org/v2/top-headlines?country=in&apiKey=' + apiKey2,
-    );
+    const data = await axios.get(Url.trendingUrl);
+
+    // Running on Mock API
+    // const data = await axios.get(Url.MockApi);
+
     setIsLoading(false);
     setnewsArray(() => {
       return {
@@ -58,12 +59,8 @@ const NewsContextProvider = ({children}) => {
 
   async function fetchQueriedPost(searchedItem) {
     setIsLoading(true);
-    const data = await axios.get(
-      'https://newsapi.org/v2/everything?q=' +
-        searchedItem +
-        '&apiKey=' +
-        apiKey2,
-    );
+    const data = await axios.get(Url.queriedUrl(searchedItem));
+    // const data = await axios.get(Url.MockApi);
     setIsLoading(false);
     setnewsArray(() => {
       return {
@@ -80,17 +77,15 @@ const NewsContextProvider = ({children}) => {
   }
 
   async function fetchListOfCategories(category) {
-    const data = await axios.get(
-      'https://newsapi.org/v2/top-headlines?country=in&category=' +
-        category +
-        '&apiKey=' +
-        apiKey2,
-    );
+    setIsListLoading(true);
+    console.log(Url.categoryUrl(category));
+    const data = await axios.get(Url.categoryUrl(category));
+    // const data = await axios.get(Url.MockApi);
     setnewsArray(previous => {
       previous[category] = data.data.articles.splice(0, 20);
       return previous;
     });
-    console.log(newsArray.business.length);
+    setIsListLoading(false);
   }
 
   const value = {
@@ -99,6 +94,7 @@ const NewsContextProvider = ({children}) => {
     fetchTrendingPost: fetchTrendingPost,
     fetchListOfCategories: fetchListOfCategories,
     isLoading: isLoading,
+    isListLoading: isListLoading,
   };
   return (
     <NewsProvider.Provider value={value}>{children}</NewsProvider.Provider>

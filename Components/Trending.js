@@ -7,16 +7,19 @@ import {
   ScrollView,
   StyleSheet,
   useWindowDimensions,
+  Pressable,
 } from 'react-native';
 import {useContext, useRef, useEffect, useCallback, useState} from 'react';
 import {NewsProvider} from '../Store/Context/NewsStore';
 import Colors from '../Utils/Colors';
+import {useNavigation} from '@react-navigation/native';
 
 const Trending = () => {
   const NewsCtx = useContext(NewsProvider);
   const {width} = useWindowDimensions();
   const scrollRef = useRef();
   const [selectedIndex, setSelectedIndex] = useState(0);
+  const navigation = useNavigation();
 
   let intervalId = null;
 
@@ -79,16 +82,21 @@ const Trending = () => {
             pagingEnabled>
             {NewsCtx.newsArray.trending.map(item => {
               return (
-                <View
-                  key={Math.random()}
-                  style={{...style.listItem, width: width - 16}}>
-                  <ImageBackground
-                    source={{uri: item.urlToImage}}
-                    resizeMode="contain"
-                    style={style.imageStyle}>
-                    <Text style={style.titleTextStyle}>{item.title}</Text>
-                  </ImageBackground>
-                </View>
+                <Pressable
+                  onPress={() => {
+                    navigation.navigate('NewsDetail', {item});
+                  }}>
+                  <View
+                    key={Math.random()}
+                    style={{...style.listItem, width: width - 16}}>
+                    <ImageBackground
+                      source={{uri: item.urlToImage}}
+                      resizeMode="contain"
+                      style={style.imageStyle}>
+                      <Text style={style.titleTextStyle}>{item.title}</Text>
+                    </ImageBackground>
+                  </View>
+                </Pressable>
               );
             })}
           </ScrollView>

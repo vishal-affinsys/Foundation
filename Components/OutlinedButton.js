@@ -3,11 +3,16 @@ import {View, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Colors from '../Utils/Colors';
 
-const OutlinedButton = ({iconName}) => {
+const OutlinedButton = ({iconName, onPress}) => {
   //   console.log(typeof iconName);
   return (
     <View style={style.headerAction}>
-      <Icon name={iconName} color={Colors.primaryColor} size={26} />
+      <Icon
+        name={iconName}
+        color={Colors.primaryColor}
+        size={26}
+        onPress={onPress}
+      />
     </View>
   );
 };

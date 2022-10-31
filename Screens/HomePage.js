@@ -42,7 +42,7 @@ const style = StyleSheet.create({
     flexDirection: 'column',
   },
   scrollStyle: {
-    // backgroundColor: 'black',
+    flexGrow: 1,
   },
 });
 
