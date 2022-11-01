@@ -1,0 +1,14 @@
+{
+  "name": "MyReactNativeApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "dependencies": {
+    "@babel/core": "*",
+    "core-js": "^3.26.0",
+    "react": "^18.2.0",
+    "react-native": "^0.70.4"
+  }
+}
